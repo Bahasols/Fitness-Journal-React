@@ -12,6 +12,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+body {
+  background-image: url('dumbell.jpg');
+  background-size: cover;
+  height:80%;
+}
 
 .App-header {
   background-color: #282c34;
