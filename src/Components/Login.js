@@ -1,9 +1,9 @@
-// Define the Signup component, which is a form for users to sign up for the application
+/* // Define the Signup component, which is a form for users to sign up for the application
 import React, { useRef } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { useAuth } from '../Contexts/AuthContext'
 
-export default function Signup() {
+export default function Login() {
     // Use the useRef() hook to create references to the input fields in the form
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -48,3 +48,4 @@ export default function Signup() {
         </>
     )
 }
+ */

@@ -13,6 +13,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   // use the useState hook to create a state variable currentUser
   const [currentUser, setCurrentUser] = useState();
+  const [loading, setLoading] = useState(true);
 
   // define a signup function that uses Firebase authentication
   function signup(email, password) {
@@ -24,9 +25,10 @@ export function AuthProvider({ children }) {
     // add the listener and set the currentUser state variable
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
+      setLoading(false);
     });
     // remove the listener when the component unmounts
-    return unsubscribe;
+    return unsubscribe
   }, []);
 
   // define the value to be passed to children components through the AuthContext
@@ -36,5 +38,5 @@ export function AuthProvider({ children }) {
   };
 
   // return the AuthContext.Provider component, which wraps the children components and provides the AuthContext value
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (<AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>);
 }
