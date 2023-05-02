@@ -1,41 +1,40 @@
-import React,{useContext, useState,useEffect} from 'react'
-import {auth} from '../firebase'
+import React, { useContext, useState, useEffect } from "react";
+import { auth } from "../firebase"; // import Firebase authentication module
+
+// create an AuthContext using createContext() function
 const AuthContext = React.createContext();
 
-export function useAuth()
-{
-    return useContext(AuthContext)
+// create a custom hook that returns the AuthContext
+export function useAuth() {
+  return useContext(AuthContext);
 }
 
+// create a React component that provides the AuthContext
+export function AuthProvider({ children }) {
+  // use the useState hook to create a state variable currentUser
+  const [currentUser, setCurrentUser] = useState();
 
-export  function AuthProvider({children}) {
-  const [currentUser,setCurrentUser] = useState()
+  // define a signup function that uses Firebase authentication
+  function signup(email, password) {
+    return auth.createUserWithEmailAndPassword(email, password);
+  }
 
-    function signup(email,password)
-    {
-        return auth.createUserWithEmailAndPassword(email,password)
-    }
+  // use the useEffect hook to add an authentication state change listener
+  useEffect(() => {
+    // add the listener and set the currentUser state variable
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+    });
+    // remove the listener when the component unmounts
+    return unsubscribe;
+  }, []);
 
-    useEffect(() =>  {
+  // define the value to be passed to children components through the AuthContext
+  const value = {
+    currentUser,
+    signup,
+  };
 
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            setCurrentUser(user);
-        })
-        return unsubscribe;
-    },[])
-
-
-    
-
-
-    const value = {
-        currentUser,
-        signup
-    }
-    
-    return (
-    <AuthContext.Provider value={value}>
-        {children}
-    </AuthContext.Provider>
-  )
+  // return the AuthContext.Provider component, which wraps the children components and provides the AuthContext value
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

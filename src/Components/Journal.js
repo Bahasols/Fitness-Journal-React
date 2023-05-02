@@ -1,4 +1,12 @@
-export function Journal()
-{
-    return(<h1>Journal</h1>);
+import { WorkoutList } from "./WorkoutList";
+export function Journal() {
+  return (
+    <>
+      <WorkoutList />
+      <br />
+      <WorkoutList />
+      <WorkoutList />
+    </>
+  );
 }
+export default Journal;
