@@ -3,8 +3,8 @@ import Table from "react-bootstrap/Table";
 const Exercise = () => {
   return (
     <Card>
-      <Card.Body>
-        <Table striped bordered hober>
+      <Card.Body flex>
+        <Table striped bordered hover>
           <thead>
             <tr>
               <th>Exercise Name</th>
@@ -20,13 +20,14 @@ const Exercise = () => {
               <td>4</td>
               <td>8</td>
               <td>225</td>
-              <td>Felt a little sore after</td>
+              <td>Felt good</td>
             </tr>
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>Deadlift</td>
+              <td>3</td>
+              <td>4</td>
+              <td>315</td>
+              <td>Pain in lower back</td>
             </tr>
           </tbody>
         </Table>
