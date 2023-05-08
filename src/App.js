@@ -46,7 +46,7 @@ function App() {
 
       <br />
 
-      {/*   {
+      {
         <AuthProvider>
           <Container
             className="d-flex align-items-center justify-content-center"
@@ -57,7 +57,7 @@ function App() {
             </div>
           </Container>
         </AuthProvider>
-      } */}
+      }
 
       <Routes>
         <Route path="/" element={<Dashboard />} />
